@@ -29,9 +29,9 @@ public class Player
 
   /* your code here - mutator(s) */ 
   public void setName(String inputName){
-
+    name = inputName;
   }
   public void addToPoints(){
-
+    points += 1;
   }
 }

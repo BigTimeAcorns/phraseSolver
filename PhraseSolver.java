@@ -4,6 +4,11 @@
  *  The PhraseSolver class the PhraseSolverGame
  */
 import java.util.Scanner;
+
+import org.graalvm.compiler.replacements.ReplacementsUtil;
+
+import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
+import jdk.tools.jlink.internal.PerfectHashBuilder;
   
 public class PhraseSolver
 {
@@ -14,7 +19,7 @@ public class PhraseSolver
   private boolean solved;
   /* your code here - constructor(s) */ 
   public PhraseSolver(){
-    player2 = null;
+    player2 = new Player();
     player1 = null;
     board = null;
     solved = false;
@@ -33,7 +38,21 @@ public class PhraseSolver
     boolean correct = true;
     while (!solved) 
     {
-      
+      if (currentPlayer%2==1)  { 
+        System.out.println("Player 1 input your guess:");
+        String playerGuess = input.nextLine().substring(0,1);
+        solvedPhrase = solvedPhrase.replace(" ", "");
+        String[]  solvedFrase = solvedPhrase.split("");
+        for(int i = 0; i < solvedFrase.length; i++){
+          if(solvedFrase[i].equals(playerGuess)){
+                 
+          }
+        }
+        
+
+
+      }
+    
       /* your code here - game logic */
       
       
