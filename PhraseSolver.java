@@ -4,11 +4,6 @@
  *  The PhraseSolver class the PhraseSolverGame
  */
 import java.util.Scanner;
-
-import org.graalvm.compiler.replacements.ReplacementsUtil;
-
-import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
-import jdk.tools.jlink.internal.PerfectHashBuilder;
   
 public class PhraseSolver
 {
@@ -19,9 +14,9 @@ public class PhraseSolver
   private boolean solved;
   /* your code here - constructor(s) */ 
   public PhraseSolver(){
+    player1 = new Player();
     player2 = new Player();
-    player1 = null;
-    board = null;
+    board = new Board();
     solved = false;
   }
   /* your code here - accessor(s) */
@@ -32,34 +27,29 @@ public class PhraseSolver
   {
     boolean solved = false;
     int currentPlayer = 1;
-
-    Scanner input = new Scanner(System.in);
-    
     boolean correct = true;
-    while (!solved) 
-    {
-      if (currentPlayer%2==1)  { 
-        System.out.println("Player 1 input your guess:");
-        String playerGuess = input.nextLine().substring(0,1);
-        solvedPhrase = solvedPhrase.replace(" ", "");
-        String[]  solvedFrase = solvedPhrase.split("");
-        for(int i = 0; i < solvedFrase.length; i++){
-          if(solvedFrase[i].equals(playerGuess)){
-                 
-          }
+
+    public void guessing(Player  p){
+      Scanner input = new Scanner(System.in);
+      System.out.println(board.getSolvedPhrase());
+      System.out.println(board.getPhrase());
+      for(int i = 0; i <= board.getSolvedPhrase().length(); i++ ){
+        System.out.print(p.getName() + " input your guess: ");
+        String playerGuess = input.nextLine();
+        board.guessLetter(playerGuess);
+        if(board.isSolved(playerGuess)){
+          System.out.println("Congrats " + p.getName() + " you guessed the phrase!");
+          solved = true;
+          break;
         }
-        
-
-
+        if(board.guessLetter(playerGuess)){
+          p.addToPoints();
+          System.out.println("You got " + p.getPoints());
+        }
       }
-    
-      /* your code here - game logic */
-      
-      
       /* your code here - determine how game ends */
       solved = true; 
-    } 
-   
-  }
   
+  }
+}
 }

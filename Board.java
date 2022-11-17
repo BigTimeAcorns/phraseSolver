@@ -15,7 +15,7 @@ public class  Board
   /* your code here - constructor(s) */ 
   public Board(){
     solvedPhrase = "";
-    phrase = "";
+    phrase = loadPhrase();
     currentLetterValue = 0;
   }
  
@@ -24,10 +24,10 @@ public class  Board
     return phrase;
   }
   public String getSolvedPhrase(){
-  return solvedPhrase;
+    return solvedPhrase;
   }
   public int getLetterValue(){
-  return currentLetterValue;
+    return currentLetterValue;
   }
 
    

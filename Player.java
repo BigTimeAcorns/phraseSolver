@@ -10,14 +10,16 @@ public class Player
   /* your code here - attributes */
   private String name;
   private int points;
-
+  private Scanner sc = new Scanner(System.in);
   /* your code here - constructor(s) */ 
   public Player(){
     name = "";
     points = 0;
+    System.out.println("Enter Player Name: ");
+    name = sc.nextLine();
   }
   public Player(String inputName){
-    System.out.println("Enter Player Name: ");
+    name = inputName;
   }
   /* your code here - accessor(s) */ 
   public String getName(){
