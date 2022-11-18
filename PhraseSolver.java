@@ -32,8 +32,8 @@ public class PhraseSolver
 
     System.out.println("-------------------------------");
     System.out.println(board.getSolvedPhrase());
+    Scanner input = new Scanner(System.in);
     while(!solved){
-      Scanner input = new Scanner(System.in);
       if (currentPlayer%2 == 1){
         curPlayer = player1;
         currentPlayer++;
@@ -50,7 +50,7 @@ public class PhraseSolver
         break;
       }
       if(board.guessLetter(playerGuess)){
-        curPlayer.addToPoints();
+        curPlayer.addToPoints(board.setLetterValue());
         System.out.println("You got " + curPlayer.getPoints() + " point(s)!");
       }else{
         System.out.println("That is not a valid letter :(");
@@ -64,6 +64,8 @@ public class PhraseSolver
       }
       System.out.println("-------------------------------");
       System.out.println(board.getSolvedPhrase());
+      
     }
+    input.close();
   }
 }

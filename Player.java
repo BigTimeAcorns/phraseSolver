@@ -33,7 +33,7 @@ public class Player
   public void setName(String inputName){
     name = inputName;
   }
-  public void addToPoints(){
-    points += 1;
+  public void addToPoints(int val){
+    points += val;
   }
 }
