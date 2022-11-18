@@ -28,28 +28,42 @@ public class PhraseSolver
     boolean solved = false;
     int currentPlayer = 1;
     boolean correct = true;
+    Player curPlayer;
 
-    public void guessing(Player  p){
+    System.out.println("-------------------------------");
+    System.out.println(board.getSolvedPhrase());
+    while(!solved){
       Scanner input = new Scanner(System.in);
-      System.out.println(board.getSolvedPhrase());
-      System.out.println(board.getPhrase());
-      for(int i = 0; i <= board.getSolvedPhrase().length(); i++ ){
-        System.out.print(p.getName() + " input your guess: ");
-        String playerGuess = input.nextLine();
-        board.guessLetter(playerGuess);
-        if(board.isSolved(playerGuess)){
-          System.out.println("Congrats " + p.getName() + " you guessed the phrase!");
-          solved = true;
-          break;
-        }
-        if(board.guessLetter(playerGuess)){
-          p.addToPoints();
-          System.out.println("You got " + p.getPoints());
-        }
+      if (currentPlayer%2 == 1){
+        curPlayer = player1;
+        currentPlayer++;
+      }else{
+        curPlayer = player2;
+        currentPlayer++;
       }
-      /* your code here - determine how game ends */
-      solved = true; 
-  
+      System.out.print(curPlayer.getName() + " input your guess: ");
+      String playerGuess = input.nextLine();
+      board.guessLetter(playerGuess);
+      if(board.isSolved(playerGuess)){
+        System.out.println("Congrats " + curPlayer.getName() + " you guessed the phrase!");
+        solved = true;
+        break;
+      }
+      if(board.guessLetter(playerGuess)){
+        curPlayer.addToPoints();
+        System.out.println("You got " + curPlayer.getPoints() + " point(s)!");
+      }else{
+        System.out.println("That is not a valid letter :(");
+      }
+      if(board.getSolvedPhrase().replace(" ","").equals(board.getPhrase().replace(" ",""))){
+        System.out.println("Congrats you guessed the phrase!");
+        if(player1.getPoints() > player2.getPoints()){ System.out.println(player1.getName() + " won with " + player1.getPoints() + " points and " + player2.getName() + " had " + player2.getPoints() + " points!");}
+        if(player1.getPoints() < player2.getPoints()){ System.out.println(player2.getName() + " won with " + player2.getPoints() + "points and " + player1.getName() + " had " + player1.getPoints() + " points!");}
+        solved=true;
+        break;
+      }
+      System.out.println("-------------------------------");
+      System.out.println(board.getSolvedPhrase());
+    }
   }
-}
 }
